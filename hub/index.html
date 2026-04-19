@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mead Making Made Simple — Video Tutorials</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background: #1a1a1a;
+            color: #f5f0e8;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c1810 0%, #1a1a1a 100%);
+            border-bottom: 2px solid #d4a843;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            color: #d4a843;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #b0a090;
+            font-size: 1.1em;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .module {
+            margin-bottom: 40px;
+            background: #242424;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .module-header {
+            background: linear-gradient(135deg, #2c1810, #1f1510);
+            padding: 16px 24px;
+            border-bottom: 1px solid #d4a843;
+        }
+
+        .module-header h2 {
+            color: #d4a843;
+            font-size: 1.3em;
+        }
+
+        .module-header span {
+            color: #b0a090;
+            font-size: 0.9em;
+        }
+
+        .video-list {
+            padding: 8px 0;
+        }
+
+        .video-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid #2a2a2a;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .video-item:last-child {
+            border-bottom: none;
+        }
+
+        .video-item:hover {
+            background: #2a2a2a;
+        }
+
+        .video-item .play-icon {
+            width: 40px;
+            height: 40px;
+            background: #d4a843;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .video-item .play-icon::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 8px 0 8px 14px;
+            border-color: transparent transparent transparent #1a1a1a;
+            margin-left: 3px;
+        }
+
+        .video-info h3 {
+            color: #f5f0e8;
+            font-size: 1em;
+            margin-bottom: 4px;
+        }
+
+        .video-info p {
+            color: #888;
+            font-size: 0.85em;
+        }
+
+        .video-player {
+            display: none;
+            padding: 20px 24px;
+            background: #1a1a1a;
+        }
+
+        .video-player.active {
+            display: block;
+        }
+
+        .video-player .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+        }
+
+        .video-player .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            font-size: 0.85em;
+            border-top: 1px solid #333;
+        }
+
+        .footer a {
+            color: #d4a843;
+            text-decoration: none;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+            .video-item {
+                padding: 12px 16px;
+            }
+            .module-header {
+                padding: 12px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Mead Making Made Simple</h1>
+    <p>Your free video tutorials — thank you for purchasing the book!</p>
+</div>
+
+<div class="container">
+
+    <!-- MODULE 1 -->
+    <div class="module">
+        <div class="module-header">
+            <h2>Module 1: Getting Started</h2>
+            <span>4 videos — Equipment, ingredients, and your workspace</span>
+        </div>
+        <div class="video-list">
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_1')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>1.1 — Equipment Setup & Tour</h3>
+                    <p>Everything you need for your first batch — unboxing and assembly</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_1"></div>
+
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_2')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>1.2 — Sanitation Walkthrough</h3>
+                    <p>How to sanitize properly — the most important step in mead making</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_2"></div>
+
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_3')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>1.3 — Choosing Your Honey & Yeast</h3>
+                    <p>Side-by-side comparison of different honeys and yeast strains</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_3"></div>
+
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_4')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>1.4 — Reading a Hydrometer</h3>
+                    <p>How to measure sugar content and calculate ABV</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_4"></div>
+        </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="module">
+        <div class="module-header">
+            <h2>Module 2: Brew Day</h2>
+            <span>3 videos — Making your first batch from start to seal</span>
+        </div>
+        <div class="video-list">
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_5')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>2.1 — Mixing Your Must</h3>
+                    <p>Dissolving honey, topping up, and getting the temperature right</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_5"></div>
+
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_6')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>2.2 — Pitching Yeast & Adding Nutrients</h3>
+                    <p>Rehydrating yeast, nutrient dosing, and sealing your jug</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_6"></div>
+
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_7')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>2.3 — The First 3 Days: Degassing & Monitoring</h3>
+                    <p>Daily swirling, checking the airlock, and adding the second nutrient dose</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_7"></div>
+        </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="module">
+        <div class="module-header">
+            <h2>Module 3: After Fermentation</h2>
+            <span>3 videos — Racking, aging, and bottling</span>
+        </div>
+        <div class="video-list">
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_8')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>3.1 — Racking to Secondary</h3>
+                    <p>Using your auto-siphon to transfer mead without disturbing the lees</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_8"></div>
+
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_9')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>3.2 — Stabilizing & Back-Sweetening</h3>
+                    <p>When and how to stabilize, plus adding honey for sweetness</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_9"></div>
+
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_10')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>3.3 — Bottling Day</h3>
+                    <p>Siphoning into bottles, sealing, and storage tips</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_10"></div>
+        </div>
+    </div>
+
+    <!-- MODULE 4 -->
+    <div class="module">
+        <div class="module-header">
+            <h2>Module 4: Adding Flavors</h2>
+            <span>3 videos — Fruit, spices, and apple cider additions</span>
+        </div>
+        <div class="video-list">
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_11')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>4.1 — Adding Fruit (Melomels)</h3>
+                    <p>Preparing, freezing, and racking onto fruit in secondary</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_11"></div>
+
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_12')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>4.2 — Adding Spices & Herbs (Metheglins)</h3>
+                    <p>Whole vs. ground, mesh bags, and tasting for balance</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_12"></div>
+
+            <div class="video-item" onclick="toggleVideo(this, 'VIDEO_ID_13')">
+                <div class="play-icon"></div>
+                <div class="video-info">
+                    <h3>4.3 — Making a Cyser (Apple Mead)</h3>
+                    <p>Choosing apple cider, replacing water, and the cyser process</p>
+                </div>
+            </div>
+            <div class="video-player" id="player-VIDEO_ID_13"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    <p>Mead Making Made Simple for Beginners &copy; 2026 Garrett Hollis</p>
+    <p>Questions? <a href="mailto:[EMAIL_PLACEHOLDER]">Contact us</a></p>
+</div>
+
+<script>
+    function toggleVideo(element, videoId) {
+        const player = document.getElementById('player-' + videoId);
+
+        // Close all other players
+        document.querySelectorAll('.video-player.active').forEach(p => {
+            if (p !== player) {
+                p.classList.remove('active');
+                p.innerHTML = '';
+            }
+        });
+
+        // Toggle this player
+        if (player.classList.contains('active')) {
+            player.classList.remove('active');
+            player.innerHTML = '';
+        } else {
+            player.classList.add('active');
+            player.innerHTML = `
+                <div class="video-wrapper">
+                    <iframe
+                        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            `;
+        }
+    }
+</script>
+
+</body>
+</html>
